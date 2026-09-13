@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="ЮРО — барбершоп на Ново-Садовой, 38 в Самаре. Мужские стрижки, моделирование бороды, детские стрижки. Первая стрижка 990 ₽.">
+<meta name="color-scheme" content="dark">
+<title>ЮРО — барбершоп в Самаре</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;700&family=Cuprum:wght@400;500;600;700&display=swap">
+<style>
+/* Мир снят с их зала: чёрные стены, чёрные кресла и ШЕСТИУГОЛЬНЫЕ СОТЫ СВЕТА
+   на потолке. Соты стали главным мотивом: живой фон первого экрана рисует их
+   шейдером, а сетка сот повторяется в разделителях и рамках.
+   Сиреневый блик взят с их вывески над входом. */
+:root{
+  --void:#08090c;
+  --void-2:#0e1015;
+  --card:#14171e;
+  --light:#f1f3f8;          /* свет сот */
+  --neon:#a98cff;           /* сиреневая вывеска */
+  --neon-2:#c9b6ff;
+  --steel:#8a90a0;
+  --steel-dim:#5f6674;
+  --line:rgba(241,243,248,.12);
+  --line-soft:rgba(241,243,248,.06);
+
+  --fd:'Tektur',system-ui,sans-serif;
+  --fb:'Cuprum','Helvetica Neue',system-ui,sans-serif;
+
+  --wrap:1180px;
+  --pad:clamp(1rem,4vw,2.2rem);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{
+  margin:0;background:var(--void);color:var(--light);
+  font-family:var(--fb);font-weight:400;font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
+h1,h2,h3{font-family:var(--fd);font-weight:700;margin:0;line-height:1.08;text-transform:uppercase;text-wrap:balance}
+p{margin:0}
+
+/* Сотовая лента: разделитель из их потолка */
+.hexline{height:26px;opacity:.5;background-repeat:repeat-x;background-size:auto 26px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='26' viewBox='0 0 48 26'%3E%3Cg fill='none' stroke='%23a98cff' stroke-width='1'%3E%3Cpath d='M12 1 24 7v12l-12 6L0 19V7z'/%3E%3Cpath d='M36 1 48 7v12l-12 6-12-6V7z'/%3E%3C/g%3E%3C/svg%3E")}
+
+/* ── Шапка ── */
+.top{position:sticky;top:0;z-index:50;background:rgba(8,9,12,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.top-in{display:flex;align-items:center;gap:.8rem;min-height:60px;padding-block:.5rem}
+.logo{font-family:var(--fd);font-weight:700;font-size:22px;letter-spacing:.12em;text-decoration:none;
+  text-shadow:0 0 18px rgba(169,140,255,.45)}
+.logo small{display:block;font-family:var(--fb);font-weight:500;font-size:8.5px;letter-spacing:.34em;color:var(--steel);margin-top:.1em}
+.demo-tag{font-family:var(--fb);font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--steel-dim);
+  border:1px solid var(--line);padding:.28em .6em;white-space:nowrap}
+.top .sp{margin-left:auto}
+.tel{font-family:var(--fd);font-weight:500;font-size:14px;text-decoration:none;white-space:nowrap}
+.tel:hover{color:var(--neon)}
+@media(max-width:860px){.demo-tag{display:none}}
+@media(max-width:560px){.logo{font-size:18px}.tel{display:none}}
+
+.btn{font-family:var(--fd);font-weight:500;font-size:13px;text-transform:uppercase;letter-spacing:.08em;
+  text-decoration:none;cursor:pointer;padding:.9em 1.6em;border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  transition:transform .14s,background-color .2s,border-color .2s,color .2s,box-shadow .2s}
+.btn:active{transform:translateY(1px)}
+.btn-n{background:var(--neon);color:#120c25;box-shadow:0 0 30px -8px rgba(169,140,255,.7)}
+.btn-n:hover{background:var(--neon-2)}
+.btn-o{border-color:var(--line);color:var(--light)}
+.btn-o:hover{border-color:var(--neon);color:var(--neon)}
+.btn-sm{padding:.62em 1.05em;font-size:11.5px}
+
+/* ── Первый экран: потолок сот живой ── */
+.hero{position:relative;min-height:clamp(540px,88vh,760px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+#hex{position:absolute;inset:0;width:100%;height:100%;z-index:-2;background:#08090c}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,var(--void) 6%,rgba(8,9,12,.7) 42%,rgba(8,9,12,.25) 75%)}
+.hero-in{position:relative;width:100%;padding-block:clamp(2rem,6vw,4rem)}
+.hero h1{font-size:clamp(3rem,15vw,8rem);letter-spacing:.06em;line-height:.9;
+  text-shadow:0 0 60px rgba(169,140,255,.35)}
+.hero .sub{font-family:var(--fb);font-weight:600;font-size:clamp(10px,2.6vw,13px);letter-spacing:.42em;
+  text-transform:uppercase;color:var(--neon-2);margin-top:.7rem}
+.hero .who{margin-top:1.4rem;max-width:34ch;font-size:clamp(1rem,3.4vw,1.18rem);color:var(--steel)}
+.hero .who b{color:var(--light);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.hero-stats{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--line-soft)}
+.hs{display:flex;align-items:baseline;gap:.4rem}
+.hs b{font-family:var(--fd);font-weight:700;font-size:1.25rem;color:var(--neon-2);font-variant-numeric:tabular-nums}
+.hs span{font-size:13px;color:var(--steel-dim)}
+
+/* ── Лента слогана: его собственные три слова ── */
+.creed{background:var(--neon);color:#120c25;overflow:hidden}
+.creed-in{display:flex;gap:2.4rem;padding-block:.85rem;white-space:nowrap;overflow:hidden;max-width:100%;font-family:var(--fd);font-weight:500;
+  font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+@media (prefers-reduced-motion: no-preference){
+  .creed-track{display:flex;gap:2.4rem;animation:slide 26s linear infinite}
+}
+.creed-track{display:flex;gap:2.4rem}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── Секции ── */
+section.blk{padding-block:clamp(2.6rem,7vw,5rem)}
+.blk-h{margin-bottom:1.8rem}
+.blk-h h2{font-size:clamp(1.5rem,5vw,2.4rem);letter-spacing:.04em}
+.blk-h p{font-size:15px;color:var(--steel-dim);max-width:48ch;margin-top:.7rem}
+
+/* Разворот блоков по прокрутке: нативный таймлайн, без скриптов */
+.rise{opacity:1}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 2% cover 32%}
+    @keyframes rise{
+      from{opacity:0;transform:perspective(1000px) rotateX(18deg) translateY(34px)}
+      to{opacity:1;transform:perspective(1000px) rotateX(0) translateY(0)}
+    }
+  }
+}
+
+/* ── Прайс: карточки с наклоном ── */
+.svc{display:grid;grid-template-columns:1fr;gap:.7rem}
+@media(min-width:640px){.svc{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.svc{grid-template-columns:1fr 1fr 1fr}}
+.card{position:relative;background:linear-gradient(160deg,var(--card),#0b0d12);border:1px solid var(--line-soft);
+  padding:1.2rem;display:flex;flex-direction:column;gap:.5rem;transform-style:preserve-3d;
+  transition:transform .18s ease-out,border-color .2s;will-change:transform}
+.card:hover{border-color:rgba(169,140,255,.45)}
+.card .gl{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(169,140,255,.18),transparent 55%)}
+.card:hover .gl{opacity:1}
+.card-top{display:flex;align-items:baseline;gap:.7rem;transform:translateZ(24px)}
+.card h3{font-family:var(--fb);font-weight:700;font-size:17px;line-height:1.25;flex:1;min-width:0;text-transform:none;letter-spacing:0}
+.card .pr{font-family:var(--fd);font-weight:700;font-size:1.2rem;color:var(--neon-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.card p{font-size:14px;line-height:1.5;color:var(--steel-dim);transform:translateZ(14px)}
+.card.hit{border-color:rgba(169,140,255,.5);background:linear-gradient(160deg,#1a1630,#0b0d12)}
+.card .flag{position:absolute;top:0;right:0;background:var(--neon);color:#120c25;font-family:var(--fd);font-weight:500;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:.3em .7em}
+
+/* ── Акции ── */
+.deals{display:grid;grid-template-columns:1fr;gap:.7rem}
+@media(min-width:760px){.deals{grid-template-columns:1fr 1fr}}
+.deal{border:1px solid var(--neon);padding:1.4rem;display:flex;flex-direction:column;gap:.4rem;
+  background:radial-gradient(140% 100% at 0% 0%,rgba(169,140,255,.12),transparent 60%)}
+.deal b{font-family:var(--fd);font-weight:700;font-size:clamp(1.5rem,6vw,2.2rem);color:var(--neon-2);line-height:1}
+.deal span{font-size:15px;color:var(--steel)}
+
+/* ── Зал: 3D-галерея ── */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+@media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal figure{margin:0;position:relative;overflow:hidden;border:1px solid var(--line-soft)}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .6s ease}
+.gal figure:hover img{transform:scale(1.07)}
+.gal .wide{grid-column:span 2}
+.gal .wide img{aspect-ratio:2}
+.gal figcaption{position:absolute;left:0;bottom:0;right:0;padding:1.6em .7em .5em;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--steel);background:linear-gradient(transparent,rgba(8,9,12,.92))}
+
+/* ── Отзывы ── */
+.revs{display:grid;grid-template-columns:1fr;gap:.8rem}
+@media(min-width:820px){.revs{grid-template-columns:repeat(3,1fr)}}
+.rev{background:var(--void-2);border-left:2px solid var(--neon);padding:1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.rev p{font-size:14.5px;line-height:1.6;color:var(--steel)}
+.rev .who{display:flex;justify-content:space-between;gap:.8rem;align-items:baseline;font-size:12px;color:var(--steel-dim);margin-top:auto}
+.rev .who b{font-family:var(--fd);font-weight:500;color:var(--light);font-size:12.5px}
+.topics{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem}
+.topic{font-family:var(--fd);font-weight:500;font-size:12px;border:1px solid var(--neon);color:var(--neon-2);padding:.4em .8em}
+
+/* ── График и адрес ── */
+.info{display:grid;grid-template-columns:1fr;gap:1.4rem}
+@media(min-width:860px){.info{grid-template-columns:.9fr 1.1fr;gap:clamp(1.4rem,4vw,2.8rem)}}
+.hours{border:1px solid var(--line);padding:1.4rem}
+.hours h3{font-family:var(--fd);font-size:14px;letter-spacing:.16em;color:var(--steel);margin-bottom:1rem}
+.hrow{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line-soft);font-size:16px}
+.hrow:last-child{border-bottom:none}
+.hrow b{font-family:var(--fd);font-weight:500;font-variant-numeric:tabular-nums}
+.hnote{font-size:12.5px;color:var(--steel-dim);margin-top:1rem}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.8rem 0;border-bottom:1px solid var(--line-soft)}
+@media(min-width:420px){.row{grid-template-columns:92px 1fr;gap:1rem;align-items:baseline}}
+.row .k{font-family:var(--fd);font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel-dim)}
+.row .v{font-size:16px;line-height:1.45}
+.row .v small{display:block;font-size:13px;color:var(--steel-dim);margin-top:.2rem}
+.row .v a{text-decoration:none;font-weight:600}
+.row .v a:hover{color:var(--neon)}
+
+/* ── Форма ── */
+#zapis{background:var(--void-2);border-top:1px solid var(--line-soft)}
+.form{display:flex;flex-direction:column;gap:.8rem;max-width:440px}
+.f-row{display:flex;flex-direction:column;gap:.3rem}
+.f-row label{font-family:var(--fd);font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel-dim)}
+.f-row input{font-family:var(--fb);font-size:16px;color:var(--light);background:var(--void);
+  border:1px solid var(--line);padding:.75em .9em}
+.f-row input:focus{border-color:var(--neon);outline:none}
+.err{font-size:13px;color:#ff7a68}
+.done{border:1px solid var(--neon);padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.4rem}
+.done b{font-family:var(--fd);font-weight:500;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--neon-2)}
+.done p{font-size:14px;color:var(--steel);line-height:1.5}
+.done a{color:var(--neon-2);font-weight:600}
+
+footer{background:var(--void);padding-block:2rem;color:var(--steel-dim)}
+.foot{display:flex;flex-direction:column;gap:1.2rem}
+@media(min-width:700px){.foot{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.foot-note{font-size:12px;line-height:1.6;max-width:56ch}
+.foot-note a{color:var(--light);text-decoration:underline;text-underline-offset:3px}
+.foot-note a:hover{color:var(--neon)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#top" class="logo">ЮРО<small>мужские стрижки</small></a>
+    <span class="demo-tag">демо-макет</span>
+    <span class="sp"></span>
+    <a class="tel" href="tel:+79021891931">+7 902 189-19-31</a>
+    <a class="btn btn-n btn-sm" href="#zapis">Записаться</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <canvas id="hex" aria-hidden="true"></canvas>
+    <div class="wrap hero-in">
+      <h1>ЮРО</h1>
+      <p class="sub">барбершоп · Ново-Садовая, 38</p>
+      <p class="who">Меня зовут <b>Юра</b>, я профессиональный барбер с опытом более четырёх лет. Стригу сам, каждого.</p>
+      <div class="hero-cta">
+        <a class="btn btn-n" href="#zapis">Записаться</a>
+        <a class="btn btn-o" href="https://t.me/barber_yuro" target="_blank" rel="noopener">Телеграм</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><b>4,9</b><span>44 оценки на Яндекс Картах</span></div>
+        <div class="hs"><b>42</b><span>отзыва</span></div>
+        <div class="hs"><b>990 ₽</b><span>первая стрижка</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="creed">
+    <div class="creed-in">
+      <div class="creed-track" id="creed"></div>
+    </div>
+  </div>
+
+  <section class="blk" id="price">
+    <div class="wrap">
+      <div class="blk-h rise">
+        <h2>Что делаю</h2>
+        <p>Описания здесь его собственные, из карточки барбершопа. Цены обновлены второго августа.</p>
+      </div>
+      <div class="svc" id="svc"></div>
+    </div>
+  </section>
+
+  <div class="hexline"></div>
+
+  <section class="blk">
+    <div class="wrap">
+      <div class="blk-h rise">
+        <h2>Две выгоды</h2>
+        <p>Обе действуют прямо сейчас, обе объявлены им самим.</p>
+      </div>
+      <div class="deals rise">
+        <div class="deal">
+          <b>990 ₽</b>
+          <span>Первая стрижка для новых гостей вместо 1490 ₽</span>
+        </div>
+        <div class="deal">
+          <b>−20 %</b>
+          <span>Приводите нового гостя и получаете скидку на следующую стрижку</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" style="background:var(--void-2)">
+    <div class="wrap">
+      <div class="blk-h rise">
+        <h2>Зал</h2>
+        <p>Чёрные стены, соты света на потолке, кожаный диван для ожидания. Тот самый потолок нарисован живьём на первом экране.</p>
+      </div>
+      <div class="gal rise">
+        <figure class="wide"><img src="img/hall.jpg" alt="Зал барбершопа с сотами света на потолке" loading="lazy"><figcaption>Зал</figcaption></figure>
+        <figure><img src="img/chair.jpg" alt="Кресло барбера" loading="lazy"><figcaption>Кресло</figcaption></figure>
+        <figure><img src="img/mirror.jpg" alt="Зеркало и рабочее место" loading="lazy"><figcaption>Рабочее место</figcaption></figure>
+        <figure><img src="img/sofa.jpg" alt="Кожаный диван для ожидания" loading="lazy"><figcaption>Ожидание</figcaption></figure>
+        <figure><img src="img/wash.jpg" alt="Мойка" loading="lazy"><figcaption>Мойка</figcaption></figure>
+        <figure><img src="img/shelf.jpg" alt="Полка с инструментом" loading="lazy"><figcaption>Инструмент</figcaption></figure>
+        <figure><img src="img/win.jpg" alt="Витрина барбершопа" loading="lazy"><figcaption>Витрина</figcaption></figure>
+        <figure><img src="img/cut-1.jpg" alt="Стрижка с фейдом, вид сзади" loading="lazy"><figcaption>Фейд</figcaption></figure>
+        <figure><img src="img/cut-2.jpg" alt="Стрижка, вид сзади" loading="lazy"><figcaption>Контур</figcaption></figure>
+        <figure><img src="img/facade.jpg" alt="Вход в барбершоп на Ново-Садовой" loading="lazy"><figcaption>Вход</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="wrap">
+      <div class="blk-h rise">
+        <h2>Отзывы</h2>
+        <p>42 отзыва на Яндекс Картах. Три темы, и все три по сто процентов положительных.</p>
+      </div>
+      <div class="topics rise">
+        <span class="topic">Персонал 100%</span>
+        <span class="topic">Барберы 100%</span>
+        <span class="topic">Стрижка 100%</span>
+      </div>
+      <div class="revs rise">
+        <article class="rev">
+          <p>Очень рад, что на районе наконец-то открылся достойный барбершоп. Стильная атмосфера, чисто, играет хорошая музыка. Мастер Юра сделал идеальную стрижку машинкой с фейдом, учёл все пожелания. Ушёл в отличном настроении, теперь буду ходить только к Юре.</p>
+          <div class="who"><b>Вячеслав Герасимов</b><span>15 августа</span></div>
+        </article>
+        <article class="rev">
+          <p>Сегодня стригся у мастера Юры, всё очень понравилось. Дизайн классный, мастер стрижёт очень хорошо и детально, что я люблю. Оказалось, что это ещё и его барбершоп. Парню респект и уважение, он профессионал своего дела.</p>
+          <div class="who"><b>Янис Олег</b><span>7 августа</span></div>
+        </article>
+        <article class="rev">
+          <p>Хороший барбершоп, место понравилось. Удобно расположен на Ново-Садовой, вход сразу заметен. Внутри уютно, современно и приятная атмосфера. Мастер знает своё дело, внимательно выслушал пожелания. Отдельно понравилось отношение: вежливо, спокойно и без лишней навязчивости.</p>
+          <div class="who"><b>Нубар Саркисян</b><span>28 августа</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="hexline"></div>
+
+  <section class="blk">
+    <div class="wrap">
+      <div class="blk-h rise">
+        <h2>Когда и где</h2>
+        <p>График снят с его собственной карточки в зале: на Картах он не указан.</p>
+      </div>
+      <div class="info rise">
+        <div class="hours">
+          <h3>График работы</h3>
+          <div class="hrow"><span>Понедельник — суббота</span><b>10:00 — 19:00</b></div>
+          <div class="hrow"><span>Воскресенье</span><b>10:00 — 16:00</b></div>
+          <p class="hnote">Работает по предварительной записи, так что лучше написать заранее.</p>
+        </div>
+        <div class="rows">
+          <div class="row"><span class="k">Адрес</span><span class="v">Самара, Ново-Садовая ул., 38<small>Остановка «Улица Челюскинцев» в 76 метрах, метро «Алабинская» в 430</small></span></div>
+          <div class="row"><span class="k">Телефон</span><span class="v"><a href="tel:+79021891931">+7 902 189-19-31</a></span></div>
+          <div class="row"><span class="k">Телеграм</span><span class="v"><a href="https://t.me/barber_yuro" target="_blank" rel="noopener">@barber_yuro</a><small>Портфолио работ и объявления о свободных окнах</small></span></div>
+          <div class="row"><span class="k">Ещё</span><span class="v">Парковка, Wi-Fi, оплата картой, туалет<small>Можно с собакой, есть пандус и вход доступен на коляске, детям тоже стрижём</small></span></div>
+          <div class="row" style="border-bottom:none;grid-template-columns:1fr">
+            <a class="btn btn-o" style="justify-self:start" href="https://yandex.ru/maps/org/33775185032/" target="_blank" rel="noopener">Открыть на Яндекс Картах</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="zapis">
+    <div class="wrap">
+      <div class="blk-h rise">
+        <h2>Записаться</h2>
+        <p>Оставьте имя и телефон, Юра перезвонит и подберёт время. Или сразу напишите ему в телеграм.</p>
+      </div>
+      <form class="form rise" id="form" novalidate>
+        <div class="f-row">
+          <label for="name">Как вас зовут</label>
+          <input id="name" type="text" autocomplete="name" placeholder="Имя">
+        </div>
+        <div class="f-row">
+          <label for="phone">Телефон</label>
+          <input id="phone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__">
+          <span class="err" id="err" hidden>Оставьте номер, иначе перезвонить будет некуда.</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <button class="btn btn-n" type="submit">Отправить</button>
+          <a class="btn btn-o" href="https://t.me/barber_yuro" target="_blank" rel="noopener">Написать в телеграм</a>
+        </div>
+        <div class="done" id="done" hidden></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div class="hexline"></div>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <span class="logo" style="font-size:18px">ЮРО<small>мужские стрижки</small></span>
+      <p class="foot-note" style="margin-top:.7rem">Самара, Ново-Садовая ул., 38 · пн-сб 10:00-19:00, вс 10:00-16:00 · +7 902 189-19-31</p>
+    </div>
+    <p class="foot-note">
+      Демо-макет. Фотографии, цены, отзывы и оценки взяты с карточки барбершопа на Яндекс Картах и из телеграм-канала.<br>
+      Разработка — студия <a href="https://lendvis.ru" target="_blank" rel="noopener">Лендвис</a>, lendvis.ru
+    </p>
+  </div>
+</footer>
+
+<script>
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ── Живой потолок: сотовая сетка в перспективе, один шейдер, без библиотек ── */
+(function(){
+  const c = $('hex');
+  const gl = c.getContext('webgl', {antialias:false, alpha:false, powerPreference:'low-power'});
+  if (!gl){ c.style.background = 'radial-gradient(120% 90% at 50% 0%,#1b1533,#08090c 70%)'; return; }
+
+  const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  const fs = `precision mediump float;uniform vec2 r;uniform float t;
+  // расстояние до ребра шестиугольной сетки
+  float hexEdge(vec2 p){
+    p.x *= 1.1547;
+    p.y += mod(floor(p.x), 2.0) * 0.5;
+    p = abs(fract(p) - 0.5);
+    return abs(1.0 - max(p.x * 1.5 + p.y, p.y * 2.0));
+  }
+  void main(){
+    vec2 u = (gl_FragCoord.xy - 0.5 * r) / r.y;
+    // потолок уходит вдаль: чем выше по экрану, тем дальше соты
+    float d = 1.0 / max(0.16, 0.92 - u.y * 1.15);
+    vec2 g = vec2(u.x * d * 2.6, d * 1.9 - t * 0.22);
+    float e = hexEdge(g);
+    float line = smoothstep(0.10, 0.0, e);
+    // дальние ряды тают
+    float depth = smoothstep(3.4, 0.4, d);
+    float pulse = 0.82 + 0.18 * sin(t * 0.7 + d * 1.4);
+    vec3 glow = mix(vec3(0.66, 0.55, 1.0), vec3(0.95, 0.96, 1.0), line);
+    vec3 col = vec3(0.031, 0.035, 0.047);
+    col += glow * line * depth * pulse * 0.95;
+    col += vec3(0.10, 0.07, 0.20) * depth * 0.22;
+    gl_FragColor = vec4(col, 1.0);
+  }`;
+  const mk=(ty,src)=>{const s=gl.createShader(ty);gl.shaderSource(s,src);gl.compileShader(s);return s;};
+  const pr=gl.createProgram();
+  gl.attachShader(pr,mk(gl.VERTEX_SHADER,vs));
+  gl.attachShader(pr,mk(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){
+    c.style.background='radial-gradient(120% 90% at 50% 0%,#1b1533,#08090c 70%)'; return;
+  }
+  gl.useProgram(pr);
+  const b=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,b);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(pr,'p');
+  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const uR=gl.getUniformLocation(pr,'r'), uT=gl.getUniformLocation(pr,'t');
+
+  function size(){
+    const d=Math.min(devicePixelRatio||1,1.5);
+    c.width=Math.max(1,c.clientWidth*d|0); c.height=Math.max(1,c.clientHeight*d|0);
+    gl.viewport(0,0,c.width,c.height); gl.uniform2f(uR,c.width,c.height);
+  }
+  addEventListener('resize',size,{passive:true}); size();
+
+  let run=true, t0=performance.now();
+  new IntersectionObserver(e=>{run=e[0].isIntersecting; if(run && !reduced) loop();}).observe(c);
+  function loop(){
+    if(!run) return;
+    gl.uniform1f(uT, reduced ? 4 : (performance.now()-t0)/1000);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+    if(!reduced) requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ── Бегущая строка с его слоганом ── */
+(function(){
+  const words = ['Качество','Профессионализм','Уважение к вашему времени'];
+  const one = words.map(w => `<span>${w}</span>`).join('<span>◆</span>');
+  $('creed').innerHTML = (one + '<span>◆</span>').repeat(6);
+})();
+
+/* ── Прайс: его услуги с его описаниями ── */
+const SVC = [
+  ["Комплекс: стрижка и борода", 2490, "Хорошо, когда стрижка сделана с красивой укладкой, а борода с чёткими контурами и формой. Это идеальное сочетание.", true],
+  ["Удлинённая стрижка", 1790, "Работа исключительно ножницами. Создание формы, точная техника.", false],
+  ["Мужская стрижка", 1490, "Мытьё головы, работа ножницами и машинкой, оформление формы и финальная укладка. Подбираю стрижку с учётом формы лица, типа волос и ваших пожеланий.", true],
+  ["Детская стрижка", 1190, "Свой подход к детям, чтобы хорошо сидели. Делаем красиво и стильно, чтобы понравилось ребёнку.", false],
+  ["Тонирование", 1190, "Занимает около 20-30 минут, и ваша седина исчезает на ближайшие несколько недель.", false],
+  ["Моделирование бороды", 990, "Точная проработка формы и контуров. Учитываю особенности роста волос и форму лица.", true],
+  ["Стрижка под машинку", 490, "Быстро, красиво и делаем чёткие контуры.", false],
+  ["Окантовка", 490, "Чёткая окантовка, которая смотрится со стрижкой.", false],
+  ["Укладка волос", 390, "Сделаем красивую укладку, которой хватит на целый день.", false],
+  ["Удаление воском", 290, "Пара минут, и нет торчащих волос на ушах и в носу. После обрабатываем места, где прошли воском.", false]
+];
+$('svc').innerHTML = SVC.map(([n,p,d,hit]) => `
+  <article class="card${hit ? ' hit' : ''}">
+    ${hit ? '<span class="flag">часто берут</span>' : ''}
+    <span class="gl"></span>
+    <div class="card-top"><h3>${esc(n)}</h3><span class="pr">${p.toLocaleString('ru-RU')} ₽</span></div>
+    <p>${esc(d)}</p>
+  </article>`).join('');
+
+/* ── Наклон карточек за курсором ── */
+if (!reduced && matchMedia('(hover: hover)').matches){
+  $('svc').addEventListener('pointermove', e => {
+    const card = e.target.closest('.card'); if (!card) return;
+    const b = card.getBoundingClientRect();
+    const x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+    card.style.transform = `perspective(700px) rotateY(${(x-.5)*7}deg) rotateX(${(.5-y)*7}deg)`;
+    card.style.setProperty('--mx', x*100+'%');
+    card.style.setProperty('--my', y*100+'%');
+  });
+  $('svc').addEventListener('pointerout', e => {
+    const card = e.target.closest('.card'); if (card) card.style.transform = '';
+  });
+}
+
+/* ── Форма ── */
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const phone = $('phone').value.trim();
+  if (phone.replace(/\D/g,'').length < 10){ $('err').hidden = false; $('phone').focus(); return; }
+  $('err').hidden = true;
+  const name = $('name').value.trim() || 'без имени';
+  $('done').hidden = false;
+  $('done').innerHTML = `<b>Демо-режим</b>
+    <p>${esc(name)} · ${esc(phone)}. Заявка никуда не уходит: это макет.
+    На готовом сайте она придёт Юре в телеграм.
+    Сейчас напишите ему напрямую: <a href="https://t.me/barber_yuro" target="_blank" rel="noopener">@barber_yuro</a>
+    или позвоните <a href="tel:+79021891931">+7 902 189-19-31</a>.</p>`;
+});
+$('phone').addEventListener('input', () => { $('err').hidden = true; });
+</script>
+</body>
+</html>
